@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Chutku ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  background:linear-gradient(180deg,#ff758c,#ff7eb3);
+  font-family: 'Arial', sans-serif;
+  color:white;
+  text-align:center;
+}
+.section{
+  min-height:100vh;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+.active{display:flex;}
+
+h1{font-size:3em;}
+.poster{font-size:3.5em;font-weight:bold;}
+button{
+  margin-top:30px;
+  padding:12px 30px;
+  border:none;
+  border-radius:25px;
+  background:#fff;
+  color:#ff4f81;
+  font-size:1.1em;
+}
+img{width:90%;max-width:320px;border-radius:20px;margin:10px;}
+iframe{width:100%;max-width:350px;height:200px;border-radius:15px;}
+.letter{
+  background:rgba(255,255,255,0.2);
+  padding:20px;
+  border-radius:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- COUNTDOWN -->
+<div class="section active" id="countdownSection">
+  <h1>⏳ Countdown</h1>
+  <div id="timer"></div>
+</div>
+
+<!-- BIRTHDAY POSTER -->
+<div class="section" id="birthday">
+  <div class="poster">🎉 HAPPY BIRTHDAY<br>CHUTKU ❤️ 🎉</div>
+  <button onclick="next('love')">NEXT</button>
+</div>
+
+<!-- LOVE -->
+<div class="section" id="love">
+  <h1>I LOVE YOU BACHA ❤️</h1>
+  <button onclick="next('photos')">NEXT</button>
+</div>
+
+<!-- PHOTOS -->
+<div class="section" id="photos">
+  <img src="https://via.placeholder.com/300x400">
+  <img src="https://via.placeholder.com/300x400">
+  <button onclick="next('letter')">NEXT</button>
+</div>
+
+<!-- LETTER -->
+<div class="section" id="letter">
+  <div class="letter">
+    <h2>💌 My Letter</h2>
+    <p>
+      Happy birthday chutku .  
+I hope mere bina bhoht khus honge ap or khush hi raho 
+I love you ❤️ or I miss you mera sabse pyara sa ladla bacha mera chotu si jaan meri  bhoht sundar sa chutku pyari pyari akho vala.  
+      Pyaraa saa bachaa ..❤️  
+   Vo Vo Tha..."
+
+Vo vo tha jo sab tha, Par mere liye kuch khaas tha.
+
+Sab ke liye ek kahani purani, Mere liye vo zinda ehsaas tha.
+
+Vo vo tha jo sirf mera tha, Har dua mein bas uska zikr tha.
+
+Sab kehte the galat hai vo, Par mere dil ko to wahi asar tha.
+
+Vo vo tha jo sabke liye galat tha, Par mujhe laga, vo hi mera sahi tha.
+
+Log samjhe bewakoofi meri, Par dil ne use ibadat jaisi chaha tha.
+
+Aaj bhi jab yaad aata hai, To aankhon mein nami si chha jaati hai.
+
+Vo vo tha... jo ab nahi hai, Par har dhadkan uska naam suna jaati hai... 
+        <br><br>
+      Happy Birthday 
+    </p>
+  </div>
+  <button onclick="next('song')">NEXT</button>
+</div>
+
+<!-- SONG -->
+<div class="section" id="song">
+  <h2>🎶 Chori Chori Teri Meri Love Story</h2>
+  <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+  allow="autoplay; encrypted-media"></iframe>
+  <button onclick="next('cats')">NEXT</button>
+</div>
+
+<!-- CATS -->
+<div class="section" id="cats">
+  <h2>🐱🤍</h2>
+  <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif">
+</div>
+
+<script>
+function next(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function getTarget(){
+  const now=new Date();
+  let y=now.getFullYear();
+  let t=new Date(`January 11, ${y} 00:00:00`);
+  if(now>t)t.setFullYear(y+1);
+  return t.getTime();
+}
+
+const target=getTarget();
+setInterval(()=>{
+  const now=new Date().getTime();
+  const d=target-now;
+  if(d<=0){
+    document.getElementById('countdownSection').classList.remove('active');
+    document.getElementById('birthday').classList.add('active');
+    return;
+  }
+  const days=Math.floor(d/(1000*60*60*24));
+  const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const m=Math.floor((d%(1000*60*60))/(1000*60));
+  const s=Math.floor((d%(1000*60))/1000);
+  timer.innerHTML=`${days}d ${h}h ${m}m ${s}s`;
+},1000);
+</script>
+
+</body>
+</html>
