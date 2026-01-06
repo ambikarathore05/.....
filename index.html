@@ -132,7 +132,7 @@ function getTarget(){
   return t.getTime();
 }
 
-const target=getTarget();
+const target = new Date().getTime() + 10000;
 setInterval(()=>{
   const now=new Date().getTime();
   const d=target-now;
